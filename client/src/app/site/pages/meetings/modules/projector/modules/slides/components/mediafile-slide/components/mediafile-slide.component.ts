@@ -11,6 +11,7 @@ import { MediafileSlideData } from '../mediafile-slide-data';
 })
 export class MediafileSlideComponent extends BaseSlideComponent<MediafileSlideData> {
     public get url(): string {
+        console.log(`/system/media/get/${this.data.data.id} | data: `, this.data);
         return `/system/media/get/${this.data.data.id}`;
     }
 
@@ -36,6 +37,10 @@ export class MediafileSlideComponent extends BaseSlideComponent<MediafileSlideDa
 
     public constructor() {
         super();
-        (window as any).pdfWorkerSrc = `/assets/js/pdf.worker.min.js`;
+        // (window as any).pdfWorkerSrc = `/assets/pdfworker/pdf.worker.min.js`;
+    }
+
+    public log(...content: any[]): void {
+        console.log(`LOG: `, ...content);
     }
 }

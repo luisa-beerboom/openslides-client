@@ -14,6 +14,7 @@ export abstract class BaseSlideComponent<T extends object> {
      */
     @Input()
     public set data(value: SlideData<T>) {
+        console.log(`NEW DATA: `, value);
         this.setData(value);
     }
 

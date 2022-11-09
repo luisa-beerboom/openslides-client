@@ -5,13 +5,19 @@
     <div *ngIf="isPdf" class="fullscreen">
         <pdf-viewer
             [show-all]="false"
-            [original-size]="false"
+            [original-size]="true"
             [fit-to-page]="true"
             [autoresize]="true"
             [page]="page"
             [zoom]="zoom"
-            [src]="url"
+            [src]="{url, withCredentials: true}"
             style="display: block"
+            (after-load-complete)="log('after-load-complete', $event)"
+            (page-rendered)="log('page-rendered', $event)"
+            (pages-initialized)="log('pages-initialized', $event)"
+            (text-layer-rendered)="log('text-layer-rendered', $event)"
+            (error)="log('error', $event)"
+            (on-progress)="log('on-progress', $event)"
         ></pdf-viewer>
     </div>
 </div>
