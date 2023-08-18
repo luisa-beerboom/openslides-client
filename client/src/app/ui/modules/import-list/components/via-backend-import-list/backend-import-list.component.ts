@@ -255,6 +255,7 @@ export class BackendImportListComponent<M extends Identifiable> implements OnIni
             this._state = phase;
         });
         this._importer.previewsObservable.subscribe(previews => {
+            console.log(`NEW PREVIEWS`, previews);
             this.fillPreviewData(previews);
         });
         this._dataSource = this.importer.previewsObservable.pipe(
@@ -438,6 +439,10 @@ export class BackendImportListComponent<M extends Identifiable> implements OnIni
      */
     public getSummaryPointTitle(title: string): string {
         return this._importer.getVerboseSummaryPointTitle(title);
+    }
+
+    public isObjectEntry(entry: any): boolean {
+        return typeof entry === `object`;
     }
 
     private setHeaders(data: { default?: ImportListHeaderDefinition[]; preview?: BackendImportHeader[] }): void {
